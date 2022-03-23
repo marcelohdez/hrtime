@@ -1,0 +1,14 @@
+[package]
+name = "hrtime"
+authors = ["Marcelo Hernandez <marcelohdez.inq@gmail.com>"]
+license = "MIT"
+version = "0.1.0"
+edition = "2021"
+
+description = "A thin library which converts seconds into a string of colon-separated time or vice versa."
+repository = "https://github.com/marcelohdez/hrtime"
+homepage = "https://github.com/marcelohdez/hrtime"
+readme = "README.md"
+keywords = ["time", "human readable", "readable"]
+
+[dependencies]
