@@ -15,22 +15,18 @@ mod tests;
 /// assert_eq!("1:00", hrtime::from_sec(60));
 /// ```
 pub fn from_sec(secs: u64) -> String {
-    let mut str = String::new();
-
     let sec = secs % 60;  
     let min = (secs / 60) % 60;
     let hrs = secs / 60 / 60;
 
     // 0>2 pads the number with 0s to the left if less than 2 digits wide
     if hrs > 0 { // If there are hours to show:
-        str.push_str(&format!("{hrs}:{min:0>2}:{sec:0>2}"));
+        format!("{hrs}:{min:0>2}:{sec:0>2}")
     } else if min > 0 { // Else if there are minutes to show:
-        str.push_str(&format!("{min}:{sec:0>2}"));
+        format!("{min}:{sec:0>2}")
     } else { // If there are only seconds to show:
-        str.push_str(&format!("{sec}"));
+        format!("{sec}")
     }
-
-    str
 }
 
 /// Much like [`from_sec`], this function will convert the given `secs` u64
