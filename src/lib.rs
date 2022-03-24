@@ -10,9 +10,9 @@ mod tests;
 /// ```
 /// // Prints out "1200 seconds is 20:00"!
 /// let mut sec = 1200;
-/// println!("{sec} seconds is {},", rtime::from_sec(sec));
+/// println!("{sec} seconds is {},", hrtime::from_sec(sec));
 /// // Passes:
-/// assert_eq!("1:00", rtime::from_sec(60));
+/// assert_eq!("1:00", hrtime::from_sec(60));
 /// ```
 pub fn from_sec(secs: u64) -> String {
     let mut str = String::new();
@@ -43,9 +43,9 @@ pub fn from_sec(secs: u64) -> String {
 /// ```
 /// // Prints "28309 seconds with padding is 07:51:49"!
 /// let sec = 28309;
-/// println!("{sec} seconds with padding is {}", rtime::from_sec_padded(sec));
+/// println!("{sec} seconds with padding is {}", hrtime::from_sec_padded(sec));
 /// // Passes:
-/// assert_eq!("01:00:00", rtime::from_sec_padded(3600));
+/// assert_eq!("01:00:00", hrtime::from_sec_padded(3600));
 /// ```
 pub fn from_sec_padded(secs: u64) -> String {
     let sec = secs % 60;
@@ -70,20 +70,20 @@ pub fn from_sec_padded(secs: u64) -> String {
 /// ```
 /// // Prints "11:23:08 is 40988 seconds"!
 /// let time = "11:23:08";
-/// let sec = rtime::to_sec(time);
+/// let sec = hrtime::to_sec(time);
 /// println!("{time} is {sec} seconds");
 /// // Passes:
-/// assert_eq!(120, rtime::to_sec("2:00"));
+/// assert_eq!(120, hrtime::to_sec("2:00"));
 /// ```
 /// 
 /// ## Just seconds:
 /// ```
 /// // Prints "12 is 12 seconds"!
 /// let time = "12";
-/// let sec = rtime::to_sec(time);
+/// let sec = hrtime::to_sec(time);
 /// println!("{time} is {sec} seconds");
 /// // Passes:
-/// assert_eq!(48, rtime::to_sec("48"));
+/// assert_eq!(48, hrtime::to_sec("48"));
 /// ```
 pub fn to_sec(time: &str) -> u64 {
     let mut sec = 0;
