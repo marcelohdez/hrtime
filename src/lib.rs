@@ -15,9 +15,7 @@ mod tests;
 /// assert_eq!("1:00", hrtime::from_sec(60));
 /// ```
 pub fn from_sec(secs: u64) -> String {
-    let sec = secs % 60;  
-    let min = (secs / 60) % 60;
-    let hrs = secs / 60 / 60;
+    let (hrs, min, sec) = to_time(secs);
 
     // 0>2 pads the number with 0s to the left if less than 2 digits wide
     if hrs > 0 { // If there are hours to show:
@@ -42,9 +40,7 @@ pub fn from_sec(secs: u64) -> String {
 /// assert_eq!("01:00:00", hrtime::from_sec_padded(3600));
 /// ```
 pub fn from_sec_padded(secs: u64) -> String {
-    let sec = secs % 60;
-    let min = (secs / 60) % 60;
-    let hrs = secs / 60 / 60;
+    let (hrs, min, sec) = to_time(secs);
     // 0>2 pads the number with 0s to the left if less than 2 digits wide
     format!("{hrs:0>2}:{min:0>2}:{sec:0>2}")
 }
@@ -110,4 +106,31 @@ pub fn to_sec(time: &str) -> u64 {
     }
 
     sec
+}
+
+/// Returns the hours, minutes, and seconds respectively that are
+/// represented in the given seconds `u64`.
+/// 
+/// ## Why are the minute and second values `u8`s?
+/// Since both of these values will always return as <= 59, any larger
+/// integer size is redundant. Therefore, if your program needs a
+/// different integer range (outside of 0-255) remember to cast these
+/// values as such!
+/// 
+/// # Example
+/// ```
+/// let seconds = 3661; // One hour, one minute, and one second.
+/// let (hrs, min, sec) = hrtime::to_time(seconds);
+/// // Prints "3661 seconds is 1h1m1s!"
+/// println!("{seconds} seconds is {hrs}h{min}m{sec}s!");
+/// 
+/// // Passes:
+/// assert_eq!((0, 2, 15), hrtime::to_time(135));
+/// ```
+pub fn to_time(secs: u64) -> (u64, u8, u8) {
+    let sec = (secs % 60) as u8;
+    let min = ((secs / 60) % 60) as u8;
+    let hrs = secs / 60 / 60;
+
+    (hrs, min, sec)
 }
