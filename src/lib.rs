@@ -21,15 +21,13 @@ pub fn from_sec(secs: u64) -> String {
     let min = (secs / 60) % 60;
     let hrs = secs / 60 / 60;
 
-    if hrs > 0 {
-        str.push_str(&format!("{hrs:0>2}:{min:0>2}:"));
-    } else if min > 0 {
-        str.push_str(&format!("{min:0>2}:"));
-    }
-    str.push_str(&format!("{sec:0>2}"));
-
-    if &str[0..1] == "0" { // If the first character is zero, remove it
-        str.remove(0);
+    // 0>2 pads the number with 0s to the left if less than 2 digits wide
+    if hrs > 0 { // If there are hours to show:
+        str.push_str(&format!("{hrs}:{min:0>2}:{sec:0>2}"));
+    } else if min > 0 { // Else if there are minutes to show:
+        str.push_str(&format!("{min}:{sec:0>2}"));
+    } else { // If there are only seconds to show:
+        str.push_str(&format!("{sec}"));
     }
 
     str
