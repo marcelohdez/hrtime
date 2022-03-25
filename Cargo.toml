@@ -5,7 +5,10 @@ license = "MIT"
 version = "0.1.0"
 edition = "2021"
 
-description = "A thin library which converts seconds into a string of colon-separated time or vice versa."
+description = """
+A thin library which converts seconds into either a colon-seperated time
+string and vice versa, or into the raw hour, minute, and second values.
+"""
 repository = "https://github.com/marcelohdez/hrtime"
 homepage = "https://crates.io/crates/hrtime"
 readme = "README.md"
