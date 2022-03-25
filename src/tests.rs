@@ -1,5 +1,6 @@
 #[cfg(test)]
 mod tests {
+    // ======= from_sec =======
     #[test]
     fn test_from_sec_sec() {
         let result = crate::from_sec(43);
@@ -18,6 +19,7 @@ mod tests {
         assert_eq!(&result, "1:01:11");
     }
 
+    // ======= from_sec_padded =======
     #[test]
     fn test_from_sec_padded_sec() {
         let result = crate::from_sec_padded(55);
@@ -36,6 +38,7 @@ mod tests {
         assert_eq!(&result, "01:06:39");
     }
 
+    // ======= to_sec =======
     #[test]
     fn test_to_sec_sec() {
         let time = "2";
@@ -55,5 +58,27 @@ mod tests {
         let time = "8:29:17";
         let result = crate::to_sec(time);
         assert_eq!(result, 30557);
+    }
+
+    // ======= to_time =======
+    #[test]
+    fn test_to_time_sec() {
+        let seconds = 40;
+        let result = crate::to_time(seconds);
+        assert_eq!(result, (0, 0, 40));
+    }
+
+    #[test]
+    fn test_to_time_min() {
+        let seconds = 378; // 6 minutes, 18 seconds
+        let result = crate::to_time(seconds);
+        assert_eq!(result, (0, 6, 18));
+    }
+
+    #[test]
+    fn test_to_time_hr() {
+        let seconds = 3710; // 1 hour, 1 minute, 50 seconds
+        let result = crate::to_time(seconds);
+        assert_eq!(result, (1, 1, 50));
     }
 }
