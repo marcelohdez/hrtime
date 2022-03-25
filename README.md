@@ -21,7 +21,7 @@ zeroes to reach the format `"00:00:00"` (HH:MM:SS). An example using
 let secs = 234;
 println!("{secs} seconds is {}", hrtime::from_sec(secs));
 ```
-Will print `"123 seconds is 3:54"`,
+Will print `"234 seconds is 3:54"`,
 
 and the same example but using `from_sec_padded`:
 ```rust
