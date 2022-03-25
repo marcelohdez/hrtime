@@ -5,7 +5,7 @@ or into the raw hour, minute, and second values.
 
 ## Why?
 Seemed like a simple library to make as I am learning Rust and thought it
-may prove useful to someone. As you can see by the versioning (0.1.0) it
+may prove useful to someone. As you can see by the versioning (0.2.0) it
 is currently in very early stages.
 
 ## How?
